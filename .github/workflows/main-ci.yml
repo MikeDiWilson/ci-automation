@@ -17,5 +17,3 @@ jobs:
 
   lint-code:
       uses: MikeDiWilson/ci-automation/.github/workflows/linter-reusable-workflow.yml@main
-      secrets:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
