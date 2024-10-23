@@ -14,3 +14,6 @@ jobs:
       environment: "test"
     secrets:
       ZAP_API_KEY: ${{ secrets.ZAP_API_KEY }}
+
+  lint-code:
+      uses: MikeDiWilson/ci-automation/.github/workflows/linter-reusable-workflow.yml@main    
