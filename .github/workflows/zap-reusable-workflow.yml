@@ -1,0 +1,19 @@
+# .github/workflows/main-ci.yml
+name: Main CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  zap-scan:
+    uses: your-username/ci-automation/.github/workflows/zap-reusable-workflow.yml@main
+    with:
+      environment: "test"
+    secrets:
+      ZAP_API_KEY: ${{ secrets.ZAP_API_KEY }}
+
+  lint-code:
+    uses: your-username/ci-automation/.github/workflows/linter-reusable-workflow.yml@main
