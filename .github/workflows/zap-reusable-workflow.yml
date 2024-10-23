@@ -22,6 +22,6 @@ jobs:
       - name: Run ZAP Scan
         run: |
           echo "Running ZAP scan on environment: ${{ inputs.environment }}"
-          docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://your-test-environment-url
+          docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost
         env:
           ZAP_API_KEY: ${{ secrets.ZAP_API_KEY }}
