@@ -8,6 +8,9 @@ on:
         required: false
         type: string
         default: ".github/.superlinter.yml"
+    secrets:
+      GITHUB_TOKEN:
+        required: true  # Add GITHUB_TOKEN here
 
 jobs:
   lint-code:
@@ -20,3 +23,5 @@ jobs:
         uses: github/super-linter@v4
         with:
           config_file: ${{ inputs.lint-config }}
+        env:  # Use the GITHUB_TOKEN in the environment
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
