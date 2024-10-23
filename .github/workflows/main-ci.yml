@@ -17,3 +17,5 @@ jobs:
 
   lint-code:
       uses: MikeDiWilson/ci-automation/.github/workflows/linter-reusable-workflow.yml@main
+      with:
+       lint-config: ".github/.superlinter.yml"
