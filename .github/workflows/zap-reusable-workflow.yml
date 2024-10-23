@@ -1,16 +1,27 @@
-# .github/workflows/main-ci.yml
-name: Main CI Workflow
+# .github/workflows/zap-reusable-workflow.yml
+name: Reusable ZAP Scan Workflow
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+        default: "test"
+    secrets:
+      ZAP_API_KEY:
+        required: true
 
 jobs:
   zap-scan:
-    uses: MikeDiWilson/ci-automation/.github/workflows/zap-reusable-workflow.yml@main
-    with:
-      environment: "test"
-    secrets:
-      ZAP_API_KEY: ${{ secrets.ZAP_API_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Run ZAP Scan
+        run: |
+          echo "Running ZAP scan on environment: ${{ inputs.environment }}"
+          docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://your-test-environment-url
+        env:
+          ZAP_API_KEY: ${{ secrets.ZAP_API_KEY }}
