@@ -9,7 +9,7 @@ on:
 
 jobs:
   zap-scan:
-    uses: your-username/ci-automation/.github/workflows/zap-reusable-workflow.yml@main
+    uses: MikeDiWilson/ci-automation/.github/workflows/zap-reusable-workflow.yml@main
     with:
       environment: "test"
     secrets:
