@@ -19,9 +19,14 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v2
 
-      - name: Run ZAP Scan
+      - name: Start OWASP ZAP in Docker
         run: |
-          echo "Running ZAP scan on environment: ${{ inputs.environment }}"
-          docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost
-        env:
-          ZAP_API_KEY: ${{ secrets.ZAP_API_KEY }}
+          docker run -d -u zap -p 8090:8080 ghcr.io/zaproxy/zaproxy:stable zap.sh -daemon -port 8080 -config api.addrs.addr.name=0.0.0.0 -config api.addrs.addr.regex=true
+
+      - name: Wait for ZAP to start
+        run: |
+          sleep 15  # Wait for ZAP to initialize (adjust time as needed)
+
+      - name: Run OWASP ZAP Scan
+        run: |
+          docker run --network host --rm ghcr.io/zaproxy/zaproxy:stable zap.sh -cmd -quickurl http://localhost:8090 -quickout ./report.html
