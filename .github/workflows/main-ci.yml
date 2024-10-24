@@ -6,6 +6,8 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   zap-scan:
@@ -14,3 +16,8 @@ jobs:
       environment: "test"
     secrets:
       ZAP_API_KEY: ${{ secrets.ZAP_API_KEY }}
+
+  linting:
+    uses: your-repo-name/your-repo/.github/workflows/ktlint-reusable.yml@main
+    with:
+      java-version: '17'  # Specify the required Java version     
