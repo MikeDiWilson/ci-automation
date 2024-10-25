@@ -8,9 +8,9 @@ on:
         required: true
         type: string
         default: "test"
-    secrets:
-      ZAP_API_KEY:
-        required: true
+    #secrets:
+      #ZAP_API_KEY:
+        #required: true
 
 jobs:
   zap-scan:
