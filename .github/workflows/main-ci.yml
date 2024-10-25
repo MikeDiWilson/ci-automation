@@ -14,8 +14,8 @@ jobs:
     uses: MikeDiWilson/ci-automation/.github/workflows/zap-reusable-workflow.yml@main
     with:
       environment: "test"
-    secrets:
-      ZAP_API_KEY: ${{ secrets.ZAP_API_KEY }}
+    #secrets:
+      #ZAP_API_KEY: ${{ secrets.ZAP_API_KEY }}
 
   linting:
     uses: MikeDiWilson/ci-automation/.github/workflows/ktlint-reusable.yml@main
