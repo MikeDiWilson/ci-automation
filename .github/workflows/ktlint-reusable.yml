@@ -5,8 +5,9 @@ on:
     inputs:
       java-version:
         description: 'The version of Java to use'
-        required: true
+        required: false
         type: string
+        default: '21'
 
 jobs:
   ktlint:
