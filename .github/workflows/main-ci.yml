@@ -1,7 +1,19 @@
 # .github/workflows/main-ci.yml
 name: Main CI Workflow
 
+
 on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      java-version:
+        required: true
+        type: string
+    secrets:
+      ZAP_API_KEY:
+        required: false
   push:
     branches:
       - main
