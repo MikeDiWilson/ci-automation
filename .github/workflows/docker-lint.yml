@@ -1,6 +1,12 @@
 name: "Docker Lint"
 
-on: push
+on:
+  workflow_call:  # This allows the workflow to be reusable
+    inputs:
+      dockerfile-path:
+        description: "Path to the Dockerfile"
+        required: false
+        default: "./Dockerfile"
 jobs:
   docker-lint:
     runs-on: ubuntu-latest
