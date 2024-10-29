@@ -7,9 +7,6 @@ on:
         description: 'Node.js version to use'
         required: true
         default: '16'
-    secrets:
-      GITHUB_TOKEN:
-        required: true
 
 jobs:
   test:
