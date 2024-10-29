@@ -6,6 +6,7 @@ on:
       node-version:
         description: 'Node.js version to use'
         required: true
+        type: string
         default: '16'
 
 jobs:
