@@ -1,1 +1,8 @@
+name: "Docker Lint"
 
+on: push
+jobs:
+  docker-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
