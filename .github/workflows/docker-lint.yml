@@ -6,6 +6,7 @@ on:
       dockerfile-path:
         description: "Path to the Dockerfile"
         required: false
+        type: string
         default: "./Dockerfile"
 jobs:
   docker-lint:
