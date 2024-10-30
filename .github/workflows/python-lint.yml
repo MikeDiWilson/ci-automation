@@ -7,9 +7,9 @@ on:
         required: false
         type: string
     line-length:
-      required: false
-      type: integer
-      default: 88  # Default line length for Black
+       required: false
+       type: integer
+       default: 88  # Default line length for Black
 
 jobs:
   flake8:
