@@ -36,6 +36,7 @@ jobs:
             echo "language=java" >> $GITHUB_OUTPUT
           else
             echo "language=unknown" >> $GITHUB_OUTPUT
+          fi
 
   install:
     runs-on: ubuntu-latest
@@ -88,17 +89,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Python
       - run: pytest || python -m unittest discover
         if: needs.detect-language.outputs.language == 'python'
 
+      # Node
       - run: npm test
         if: needs.detect-language.outputs.language == 'node'
 
+      # Go
       - run: go test ./...
         if: needs.detect-language.outputs.language == 'go'
 
+      # Rust
       - run: cargo test --all
         if: needs.detect-language.outputs.language == 'rust'
 
+      # Java
       - run: mvn test
         if: needs.detect-language.outputs.language == 'java'
